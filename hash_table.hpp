@@ -9,7 +9,7 @@ public:
     HashTable();
     ~HashTable();
     void insert(const std::string& key, const Value& product);
-    bool find(const std::string& key, Value& product) const;
+    bool find(const std::string& key) const;
     std::vector<Value> listByCategory(const std::string& category) const;
 
 private:
