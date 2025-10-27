@@ -9,16 +9,16 @@ public:
     string productName;
     string brandName;
     string asin;
-    string category;
+    vector<string> categories;
     string upcEanCode;
-    int listPrice;
-    int sellingPrice;
-    int quantity;
+    string listPrice;
+    string sellingPrice;
+    string quantity;
     string modelNumber;
     string aboutProduct;
     string productSpecification;
     string technicalDetails;
-    int shippingWeight;
+    string shippingWeight;
     string productDimensions;
     string image;
     string variants;
@@ -36,14 +36,14 @@ public:
 
     Product() {}
 
-    Product(const string& uid, const string& pname, const string& bname, const string& a, const string& cat,
-            const string& upc, int lprice, int sprice, int qty, const string& mnumber,
-            const string& about, const string& pspec, const string& tdetails, int sweight,
+    Product(const string& uid, const string& pname, const string& bname, const string& a, const vector<string>& cats,
+            const string& upc, string lprice, string sprice, string qty, const string& mnumber,
+            const string& about, const string& pspec, const string& tdetails, string sweight,
             const string& pdim, const string& img, const string& var, const string& sk,
             const string& purl, const string& stk, const string& pdetails, const string& dim,
             const string& col, const string& ingred, const string& dtu, bool isAmazon,
             const string& sqv, const string& pdesc)
-        : uniqId(uid), productName(pname), brandName(bname), asin(a), category(cat),
+        : uniqId(uid), productName(pname), brandName(bname), asin(a), categories(cats),
           upcEanCode(upc), listPrice(lprice), sellingPrice(sprice), quantity(qty),
           modelNumber(mnumber), aboutProduct(about), productSpecification(pspec),
           technicalDetails(tdetails), shippingWeight(sweight), productDimensions(pdim),

@@ -1,6 +1,4 @@
-#include "csv_parsing.hpp"
-
-using namespace std;
+#include "testing.hpp"
 
 void printHelp()
 {
@@ -38,7 +36,7 @@ void evalCommand(string line, HashTable<string, Product>& inventory_table)
     {
         // Look up the appropriate datastructure to find all inventory belonging to a specific category
         cout << "YET TO IMPLEMENT!" << endl;
-        inventory_table.listByCategory(line);
+       // inventory_table.listByCategory(line);
     }
 }
 
@@ -59,6 +57,11 @@ void bootStrap(HashTable<string, Product>& inventory_table)
 
 int main(int argc, char const *argv[])
 {
+
+    test_csv_parse();
+    return 0;
+
+    /*
     string line;
     HashTable<string, Product>* inventory_table = new HashTable<string, Product>;
     bootStrap(*inventory_table);
@@ -75,4 +78,5 @@ int main(int argc, char const *argv[])
         cout << "> ";
     }
     return 0;
+    */
 }
