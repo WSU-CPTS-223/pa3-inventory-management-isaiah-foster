@@ -73,6 +73,7 @@ void test_hash_table(void)
     cout << "Find second existing product test PASSED" << endl;
 }
 
+//test that inserting a product with an existing key updates the product
 void test_hash_insert_overwrite(void)
 {
     HashTable<string, Product> table;
@@ -94,6 +95,7 @@ void test_hash_insert_overwrite(void)
     cout << "Hash insert overwrite test PASSED" << endl;
 }
 
+//test listing by category with multiple products in the same category
 void test_listByCategory_multiple_hits(void)
 {
     HashTable<string, Product> categoryTable;
@@ -116,7 +118,7 @@ void test_listByCategory_multiple_hits(void)
     cout << "List by category multiple hits test PASSED" << endl;
 }
 
-
+//test CSV parsing with quoted fields and escaped quotes
 void test_parseCSVLine_quotes(void)
 {
     std::string line = "\"alpha\",\"escaped \"\"quote\"\"\",,tail";
@@ -129,6 +131,7 @@ void test_parseCSVLine_quotes(void)
     cout << "CSV parsing with quotes test PASSED" << endl;
 }
 
+//test various valid and invalid command formats
 void test_validCommand_variations(void)
 {
     assert(validCommand(":help"));
@@ -139,6 +142,7 @@ void test_validCommand_variations(void)
     cout << "Valid command variations test PASSED" << endl;
 }
 
+//test evalCommand for listInventory output
 void test_evalCommand_listInventory_output(void)
 {
     HashTable<string, Product> inventoryTable;

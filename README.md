@@ -20,4 +20,10 @@ Feel free to modify Makefile as you see fit.
  4. To deal with category delimiting, I first store all categories in a single entry into one string with the rest of the data, then delimit it seperately by '|' construct Product objects with a vector of categories.
 
  ### Testing
- 1. 
+ 1. `test_csv_parse` runs the full CSV ingestion pipeline against the sample data to confirm known IDs and categories load correctly while invalid lookups return false.
+ 2. `test_hash_table` builds a small table and verifies successful lookups for existing products and failures for missing keys using the original Product fixtures.
+ 3. `test_hash_insert_overwrite` checks that inserting the same key twice overwrites the stored product and that the most recent details surface in `find`.
+ 4. `test_listByCategory_multiple_hits` inserts two products under the same category and asserts that both names are printed, guarding against accidental overwrites.
+ 5. `test_parseCSVLine_quotes` feeds a crafted CSV line with embedded quotes and empty fields to verify tokenization, quote unescaping, and NA substitution.
+ 6. `test_validCommand_variations` exercises the REPL command validator with valid and invalid inputs to ensure only supported commands pass through.
+ 7. `test_evalCommand_listInventory_output` invokes the REPL category listing to ensure the expected header and every matching product name are emitted.
