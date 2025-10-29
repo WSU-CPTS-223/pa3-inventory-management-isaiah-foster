@@ -7,3 +7,17 @@ We expect a fully functioninig command line REPL application for an inventory qu
 `make` will compile and execute the skeleton code
 
 Feel free to modify Makefile as you see fit.
+
+# My Design Choices
+### Data Structure Choice
+ 1. I decided to use a hash table with seperate chaining as the primary data structure for this project. I used the same template to perform both item lookups by uniqID as well as listInventory lookups for all items in a given category. 
+ 2. I instantiate two objects, one using the uniqIds as keys for lookups, and one using the categories as keys, creating long lists at each index of the hash table storing all items matching that category. Since we need to print every single one, I think this is faster than open addressing because we just have to iterate through the list.
+
+### CSV Parsing Choices
+ 1. I made all empty fields store as NA in their respective field in the Product class.
+ 2. All NA categories were skipped when I stored to my inventory table, as I dont see those as useful to a customer
+ 3. To deal with commas inside of fields that werent meant to be comma separated, I found that all fields containing those were surrounded with quotations. I implemented logic to detect when inside of quotes, and ignore commas for delimiting in those instances.
+ 4. To deal with category delimiting, I first store all categories in a single entry into one string with the rest of the data, then delimit it seperately by '|' construct Product objects with a vector of categories.
+
+ ### Testing
+ 1. 

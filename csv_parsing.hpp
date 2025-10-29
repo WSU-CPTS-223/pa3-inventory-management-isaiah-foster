@@ -1,6 +1,8 @@
 #pragma once
-#include "hash_table.hpp"
 #include <sstream>
 #include <fstream>
+#include "hash_table.hpp"
 
-void parseCSV(HashTable<string,Product> &hashTable);
+std::vector<std::string> parseCSVLine(const std::string &line);
+
+void populate_tables(HashTable<string,Product> &lookupTable, HashTable<string,Product> &categoryTable);

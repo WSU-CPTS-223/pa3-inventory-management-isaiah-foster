@@ -16,7 +16,7 @@ bool validCommand(string line)
            (line.rfind("listInventory") == 0);
 }
 
-void evalCommand(string line, HashTable<string, Product>& inventory_table)
+void evalCommand(string line, HashTable<string, Product>& inventory_table, HashTable<string, Product>& category_table)
 {
     if (line == ":help")
     {
@@ -26,50 +26,43 @@ void evalCommand(string line, HashTable<string, Product>& inventory_table)
     else if (line.rfind("find", 0) == 0)
     {
         // Look up the appropriate datastructure to find if the inventory exist
-        cout << "YET TO IMPLEMENT!" << endl;
-        //TODO
-        //parse line properly for desired ID
-        //cout << inventory_table.find(line) << endl;
+        line = line.substr(line.find(" ") + 1);
+        cout << inventory_table.find(line) << endl;
     }
     // if line starts with listInventory
     else if (line.rfind("listInventory") == 0)
     {
+        string category = line.substr(line.find(" ") + 1);
         // Look up the appropriate datastructure to find all inventory belonging to a specific category
-        cout << "YET TO IMPLEMENT!" << endl;
-       // inventory_table.listByCategory(line);
+        category_table.listByCategory(category);
     }
 }
 
-void bootStrap(HashTable<string, Product>& inventory_table)
+vector<HashTable<string, Product>*> bootStrap(void)
 {
     cout << "\n Welcome to Amazon Inventory Query System" << endl;
     cout << " enter :quit to exit. or :help to list supported commands." << endl;
     cout << "\n> ";
-    // TODO: Do all your bootstrap operations here
-    // example: reading from CSV and initializing the data structures
-    // Don't dump all code into this single function
-    // use proper programming practices
+ 
+    HashTable<string, Product>* inventory_table = new HashTable<string, Product>;
+    HashTable<string, Product>* category_table = new HashTable<string, Product>;
+    populate_tables(*inventory_table, *category_table);
 
-
-    //populate the hash table with the csv
-    parseCSV(inventory_table);
+    return {inventory_table, category_table};
 }
 
 int main(int argc, char const *argv[])
 {
-
-    test_csv_parse();
-    return 0;
-
-    /*
+    testall();
     string line;
-    HashTable<string, Product>* inventory_table = new HashTable<string, Product>;
-    bootStrap(*inventory_table);
+    auto inventorys = bootStrap();
+    auto inventory_table = inventorys[0];
+    auto category_table = inventorys[1];
     while (getline(cin, line) && line != ":quit")
     {
         if (validCommand(line))
         {
-            evalCommand(line, *inventory_table);
+            evalCommand(line, *inventory_table, *category_table);
         }
         else
         {
@@ -78,5 +71,4 @@ int main(int argc, char const *argv[])
         cout << "> ";
     }
     return 0;
-    */
 }
